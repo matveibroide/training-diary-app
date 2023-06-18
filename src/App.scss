@@ -6,28 +6,37 @@
   justify-content: center;
   height: 100%;
   
-  .add-exercise {
+
+  .add-exercise  {
+
     width:100%;
     margin:0 auto;
-    
-    
-    
-  }
-  .add-exercise form {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    margin: 0 auto;
-  }
 
-  .add-exercise form button {
-    background-color: red;
-    width: 40%;
-  }
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 30%;
+      margin: 0 auto;
 
-  .add-exercise form input {
-    
-    width: 40%;
+      input {
+        width: 40%;
+      }
+
+      button {
+        background-color: red;
+        width: 40%;
+      }
+    }
   }
 }
 
+
+@media(max-width:390px) {
+  .App .add-exercise form button {
+    width: 100%;
+  }
+
+  .App .add-exercise form input {
+    width: 90%;
+  }
+ }
