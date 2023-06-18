@@ -1,0 +1,33 @@
+.App {
+  text-align: center;
+  display: flex;
+ 
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  
+  .add-exercise {
+    width:100%;
+    margin:0 auto;
+    
+    
+    
+  }
+  .add-exercise form {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 0 auto;
+  }
+
+  .add-exercise form button {
+    background-color: red;
+    width: 40%;
+  }
+
+  .add-exercise form input {
+    
+    width: 40%;
+  }
+}
+
