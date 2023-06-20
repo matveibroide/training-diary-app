@@ -14,9 +14,13 @@
     }
 
     .delete-button {
+        margin-top: 1em;
+        border-radius: 10px;
         background-color: red;
-        width: 10%;
-        margin: 0 auto; 
+        border: transparent;
+        padding: 5px;
+        max-width: 20%;
+        margin: 0 auto;
         margin-bottom: 1em;
     }
     .add-exercise {
@@ -44,11 +48,15 @@
 
 
 
-@media(min-width:390px) {
+@media(max-width:390px) {
 
-    .intensity .delete-button {
+    .intensity .close-button {
             
         width: 17%;
     
 }
+
+    .add-exercise form input {
+        margin: 1em 0 1em 0;
+    }
 }

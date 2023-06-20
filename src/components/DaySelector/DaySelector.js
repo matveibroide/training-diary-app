@@ -20,7 +20,7 @@ function onSelectDay(e) {
     const updatedDays = days.map(day=>{
 
         if (day.day === e.target.textContent) {
-            dispatch({type:'update_day',payload:{day:e.target.textContent}})
+            dispatch({type:'update-day',payload:{day:e.target.textContent}})
             return {...day, active:true}
         }
         else {

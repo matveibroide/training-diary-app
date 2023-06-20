@@ -1,8 +1,12 @@
 .intensity-tab {
     display: flex;
     width: 50%; 
-    justify-content: space-around;
+    align-items: left;
     margin: 0 auto;
+
+    form {
+        width: 50%;
+    }
     
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     .intensity-tab-numbers {
@@ -19,11 +23,11 @@
     }
 
 
-    @media(min-width:390px) {
+    @media(max-width:390px) {
         .intensity-tab {
-            width: 90%;
+            width: 100%;
 
-            button {
+            .close-button {
                 width: 50%;
             }
 

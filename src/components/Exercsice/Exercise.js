@@ -1,11 +1,11 @@
-import {ACTIONS} from '../../App.js'
+import {ACTIONS} from '../../App'
 import IntensityTab from '../IntensityTab/IntensityTab.js'
-import './Todo.scss'
+import './Exercise.scss'
 import { useState } from 'react';
 
 
 
-export default function Todo ({todo,dispatch}) {
+export default function Exercise ({exercise,dispatch}) {
 
     
     
@@ -13,11 +13,12 @@ export default function Todo ({todo,dispatch}) {
     const [reps,setReps] = useState('');
     const [weight,setWeight] = useState('');
     const [rpe,setRpe] = useState('');
-    const [id,setId] = useState(todo.id + 1)
+    
 
     function handleSubmit(e) {
+        console.log('red')
         e.preventDefault(e)
-        dispatch({type:'update-intensity',payload:{intensity:{sets:sets,reps:reps,weight:weight,rpe:rpe},id:id}})
+        dispatch({type:'update-exercise-intensity',payload:{intensity:{sets:sets,reps:reps,weight:weight,rpe:rpe},id:exercise.activeID}})
         setSets('')
         setReps('')
         setWeight('')
@@ -31,8 +32,8 @@ export default function Todo ({todo,dispatch}) {
     
     return (
         <div className='intensity'>   
-            <span>{todo.name}</span>
-            <button className='delete-button' onClick={()=>dispatch({type:ACTIONS.DELETE_TODO,payload:{id:todo.id}})}>delete</button>        
+            <span>{exercise.name}</span>
+            <button className='delete-button' onClick={()=>dispatch({type:ACTIONS.DELETE_EXERCISE,payload:{id:exercise.activeID}})}>delete</button>        
             
             <div className="intensity-tab">
                 <form onSubmit={handleSubmit}  action="|">
@@ -44,7 +45,7 @@ export default function Todo ({todo,dispatch}) {
                                 </div>
                     <button>Add</button>
                 </form>
-                <IntensityTab todo = {todo}/>
+                <IntensityTab exercise = {exercise}/>
             </div>
         </div>
     )
