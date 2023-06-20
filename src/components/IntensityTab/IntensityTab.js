@@ -8,6 +8,7 @@ export default function IntensityTab({exercise}) {
     const sets = exercise.intensity === null ? null : exercise.intensity.sets
     const weight = exercise.intensity === null ? null : exercise.intensity.weight
     const rpe = exercise.intensity === null ? null : exercise.intensity.rpe
+    const tut = exercise.intensity === null ? null : exercise.intensity.tut
 
     const color = rpe <= 5 ? 'green' : (rpe >= 5 && rpe <= 8) ? 'orange' : 'red';
     
@@ -21,7 +22,8 @@ export default function IntensityTab({exercise}) {
             <div>Reps:{reps}</div>
             <div>Sets:{sets}</div>
             <div>Weight:{weight}</div>
-            <div>RPE:{rpe} </div>         
+            <div>RPE:{rpe} </div> 
+            <div>TUT:{tut}</div>        
             </div>
 
     )

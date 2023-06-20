@@ -7,6 +7,7 @@ import Training from './components/Trainings/Trainings';
 
  export const ACTIONS = {
   ADD_TRAINING:'add-training',
+  DELETE_TRAINING:'delete-training',
   UPDATE_DAY:'update-day',
   UPDATE_EXERCISE:'update-exercise',
   UPDATE_EXERCISE_INTENSITY:'update-exercise-intensity',
@@ -16,7 +17,7 @@ import Training from './components/Trainings/Trainings';
 function reducer(state,action) {
   switch(action.type) {
       case ACTIONS.ADD_TRAINING:
-          console.log('action')
+          
           return {
               ...state,
               trainings:[...state.trainings,newTraining(action.payload.name,action.payload.date,state)]
@@ -50,7 +51,7 @@ function reducer(state,action) {
         }
 
 
-        case ACTIONS.UPDATE_EXERCISE_INTENSITY: 
+      case ACTIONS.UPDATE_EXERCISE_INTENSITY: 
           
 
         return {
@@ -67,7 +68,8 @@ function reducer(state,action) {
                     reps:action.payload.intensity.reps,
                     sets:action.payload.intensity.sets,
                     weight:action.payload.intensity.weight,
-                    rpe:action.payload.intensity.rpe},
+                    rpe:action.payload.intensity.rpe,
+                    tut:action.payload.intensity.tut}
                   };
                 } else {
                   return exercise;
@@ -78,8 +80,8 @@ function reducer(state,action) {
         };
           
           
-        case ACTIONS.DELETE_EXERCISE:
-
+      case ACTIONS.DELETE_EXERCISE:
+        console.log('work')
         return {
           ...state,
           trainings:state.trainings.map((training)=>{
@@ -93,10 +95,17 @@ function reducer(state,action) {
           })
         }
 
+      case ACTIONS.DELETE_TRAINING:
         
+      return {
+        ...state,
+        trainings:state.trainings.filter(training=>training.id !== action.payload.id)
+      }
 
           default:
   }
+
+
 }
 
 function newTraining(name,date,state) {
@@ -126,14 +135,19 @@ export default function App() {
   const [name, setName] = useState('');
   const [date, setDate] = useState('');
   
+  const savedTrainings = localStorage.getItem('trainings')
   
   const initialState = {
-    trainings:[],
+    trainings:savedTrainings ? JSON.parse(savedTrainings) : [],
     day:'monday'
     
 }
 const [state,dispatch] = useReducer(reducer,initialState)
 
+
+useEffect(()=>{
+  localStorage.setItem('trainings',JSON.stringify(state.trainings))
+},[state.trainings])
 
   function handleSubmit(e) {
       e.preventDefault()
@@ -141,6 +155,8 @@ const [state,dispatch] = useReducer(reducer,initialState)
       setName('')
       setDate('')
   }
+
+
   return (
     <div className='App'>
     <DaySelector dispatch={dispatch}/>

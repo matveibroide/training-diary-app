@@ -13,16 +13,18 @@ export default function Exercise ({exercise,dispatch}) {
     const [reps,setReps] = useState('');
     const [weight,setWeight] = useState('');
     const [rpe,setRpe] = useState('');
+    const [tut,setTut] = useState('')
     
 
     function handleSubmit(e) {
         console.log('red')
         e.preventDefault(e)
-        dispatch({type:'update-exercise-intensity',payload:{intensity:{sets:sets,reps:reps,weight:weight,rpe:rpe},id:exercise.activeID}})
+        dispatch({type:'update-exercise-intensity',payload:{intensity:{sets:sets,reps:reps,weight:weight,rpe:rpe,tut:tut},id:exercise.activeID}})
         setSets('')
         setReps('')
         setWeight('')
         setRpe('')
+        setTut('')
     }
 
     
@@ -42,6 +44,7 @@ export default function Exercise ({exercise,dispatch}) {
                                     <input placeholder='reps' value={reps} onChange={(e)=>setReps(e.target.value)} type="text" />
                                     <input placeholder='weight' value={weight} onChange={(e)=>setWeight(e.target.value)} type="text" />
                                     <input placeholder='RPE' value={rpe} onChange={(e)=>setRpe(e.target.value)} type="text" />
+                                    <input placeholder='TUT' value={tut} onChange = {(e)=>setTut(e.target.value)} type="text"  />
                                 </div>
                     <button>Add</button>
                 </form>

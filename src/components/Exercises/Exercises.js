@@ -112,7 +112,7 @@ return (
 <div className="add-exercise">
     <form onSubmit={handleSubmit} action="">
     <input type="text" value = {name} onChange = {e => setName(e.target.value) }  />
-    <button>add exercise</button>
+    <button style={{backgroundColor:'green'}} >Add exercise</button>
     </form>
    {training.exercises.map((item,key)=>{
     return <div key={key}>

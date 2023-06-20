@@ -7,7 +7,7 @@ export default function Training({training,dispatch,id}) {
     
     const [active,setActive] = useState(false)
 
-    const color = active ? 'red' : 'green'
+    const color = active ? 'orange' : 'green'
 
     return (
         <div className="trainings-info">
@@ -17,6 +17,7 @@ export default function Training({training,dispatch,id}) {
                     <h4>Date:{training.date}</h4>
                 </div>
                 <button className="close-button" style={{backgroundColor:`${color}`}} onClick={() => setActive(!active)}>{active ? 'Close' : 'Show'}</button>
+                <button className="close-button" style={{backgroundColor:'red'}} onClick={() => dispatch({type:'delete-training',payload:{id:training.id}})}>Delete</button>
             </div>
             {active ? <Exercises training = {training} id = {id} dispatch = {dispatch}/> : null}
         </div>
