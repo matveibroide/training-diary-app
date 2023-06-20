@@ -1,7 +1,7 @@
 .intensity-tab {
     display: flex;
     width: 50%; 
-    align-items: left;
+    justify-content: space-around;
     margin: 0 auto;
 
     form {
@@ -13,7 +13,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 25%;
+        width: fit-content
 
         div {
             margin: 1em auto;
@@ -23,10 +23,17 @@
     }
 
 
-    @media(max-width:390px) {
+    @media(max-width:400px) {
         .intensity-tab {
             width: 100%;
 
+
+            .intensity-tab-numbers {
+
+                width: 34%;
+                align-items: flex-start;
+                justify-content: space-around;
+            }
             .close-button {
                 width: 50%;
             }

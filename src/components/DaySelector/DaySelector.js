@@ -4,7 +4,7 @@ import './DaySelector.scss'
 export default function DaySelector({dispatch}) {
 
     const [days,setDays] = useState(
-    [{"day": "Monday", "active": false},
+    [{"day": "Monday", "active": true},
     {"day": "Tuesday", "active":false},
     {"day": "Wednesday", "active":false},
     {"day": "Thursday", "active":false},

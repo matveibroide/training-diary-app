@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   display: flex;
- 
+  
   align-items: center;
   justify-content: center;
   height: 100%;
@@ -25,15 +25,25 @@
       button {
         background-color: red;
         width: 44%;
+
       }
     }
   }
 }
 
 
-@media(max-width:390px) {
+@media(max-width:400px) {
+
+  .App .add-exercise form {
+    margin: 0 auto;
+
+  }
   .App .add-exercise form button {
+    margin-top: 1em;
     width: 100%;
+    border-radius: 10px;
+    border: transparent;
+    padding: 1em;
   }
 
   .App .add-exercise form input {
