@@ -2,8 +2,10 @@ import {useReducer, useState,useEffect} from 'react'
 import './App.scss';
 import DaySelector from './components/DaySelector/DaySelector'
 import Training from './components/Trainings/Trainings';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars, faCoffee, faDumbbell, faScroll, faXmark } from '@fortawesome/free-solid-svg-icons'
 
-
+const dumbbell = <FontAwesomeIcon size = '3x' icon={faDumbbell} />
 
  export const ACTIONS = {
   ADD_TRAINING:'add-training',
@@ -131,15 +133,18 @@ function newExercise(name,id) {
 
 export default function App() {
 
-
+  
   const [name, setName] = useState('');
   const [date, setDate] = useState('');
+  const [valid,setValid] = useState(true)
+  
   
   const savedTrainings = localStorage.getItem('trainings')
-  
+  // DAY NULL IF DAY NULL CONTENT = NULL : SOMETHING
+  //user opens menu chose day we show him add tab
   const initialState = {
     trainings:savedTrainings ? JSON.parse(savedTrainings) : [],
-    day:'monday'
+    day:null
     
 }
 const [state,dispatch] = useReducer(reducer,initialState)
@@ -149,28 +154,60 @@ useEffect(()=>{
   localStorage.setItem('trainings',JSON.stringify(state.trainings))
 },[state.trainings])
 
-  function handleSubmit(e) {
+function handleSubmit(e) {
+
+    if (name === '' && date === '') {
+      e.preventDefault()
+      setValid(false)
+      return
+    }
+
+    if (name !== '' && date !== '') {
+      e.preventDefault()
+      setValid(true)
       e.preventDefault()
       dispatch({type:ACTIONS.ADD_TRAINING,payload:{name:name,date:date}})
       setName('')
       setDate('')
+      
+    }
+
+
+    
   }
 
+  
+
+  const inputColor = valid ? '' : 'red'
+  
+  
 
   return (
     <div className='App'>
     <DaySelector dispatch={dispatch}/>
+    {state.day ? null : 
+    (<div className='dumbbell'>
+    {dumbbell}
+    <p>
+      Please open menu select day and enter your training
+    </p>
+  </div>)}
     <div className="add-exercise">
       
+        {state.day ? 
+        (<div className="add-exercise-form">
         <form onSubmit={handleSubmit} action="">
-            <input value={name} onChange={(e)=>setName(e.target.value)} placeholder="Training name" type="text" />
-            <input value={date} onChange={(e)=>setDate(e.target.value)} placeholder="Date" type="text" />
+            <span style={{backgroundColor:`${inputColor}`,borderRadius:'5px',padding:'0.5em'}}>{valid ? null : 'Enter training name and date'}</span>
+            <input  value={name} onChange={(e)=>setName(e.target.value)} placeholder="Training name" type="text" />
+            <input  value={date} onChange={(e)=>setDate(e.target.value)} placeholder="Date" type="text" />
             <button>ADD TRAINING</button>
-           
         </form>
+      </div>)
+      : null}
         {
-              state.trainings.map(training =>{
+              state.trainings.map(training=>{
                 if (training.day === state.day) {
+                  console.log('render')
                   return <Training id = {training.id} dispatch = {dispatch} training = {training} key = {training.id}/>
                 }
               })

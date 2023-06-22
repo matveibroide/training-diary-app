@@ -1,2 +1,25 @@
-$main--color:rgb(255, 0, 0);
-$background--color:rgb(255, 255, 255);
+:root {
+    --color-primary: #19c37d;
+    --color-secondary: #715fde;
+    
+    --gradient-primary: linear-gradient(90deg,#a29bd4,#989fdd);
+    --text-primary: #202123;
+    --text-default: #353740;
+    --text-secondary: #6e6e80;
+    --text-disabled: #acacbe;
+    --text-error: var(--color-error)
+}
+
+  //text and tabs
+  
+$background_color:linear-gradient(to right, #F8E7A2, #C8A75C);
+$navbar_color:#12110d;
+$tab_color:#201f19;
+$text_color:#5f4808;
+$text_color_secondary:#C8A75C;
+$color_primary:#0bb137;
+
+//buttons
+$color_delete: rgb(250,0 ,0);
+$color_add:#008000;
+

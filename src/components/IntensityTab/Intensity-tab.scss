@@ -26,13 +26,21 @@
     @media(max-width:400px) {
         .intensity-tab {
             width: 100%;
+            justify-content: space-between;
 
+            .inputs-intensity {
+                width: 35%;
+            }
 
             .intensity-tab-numbers {
 
-                width: 34%;
+                width: 70%;
                 align-items: flex-start;
                 justify-content: space-around;
+
+                div {
+                    margin-left: 3%;
+                }
             }
             .close-button {
                 width: 50%;

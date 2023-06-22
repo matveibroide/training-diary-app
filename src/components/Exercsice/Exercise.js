@@ -34,9 +34,11 @@ export default function Exercise ({exercise,dispatch}) {
     
     return (
         <div className='intensity'>   
-            <span>{exercise.name}</span>
-            <button className='delete-button' onClick={()=>dispatch({type:ACTIONS.DELETE_EXERCISE,payload:{id:exercise.activeID}})}>delete</button>        
-            
+            <div className="delete-exercise">
+                <span>Exercise:{exercise.name}</span>
+                <button className='delete-button' onClick={()=>dispatch({type:ACTIONS.DELETE_EXERCISE,payload:{id:exercise.activeID}})}>delete</button>
+                
+            </div>
             <div className="intensity-tab">
                 <form onSubmit={handleSubmit}  action="|">
                                 <div className="inputs-intensity">

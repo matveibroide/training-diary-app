@@ -1,13 +1,17 @@
-@import url('../../styles/_variables.scss');
+@use '../../styles/variables';
 
 .trainings-info {
+    
     display:flex;
     flex-direction: column;
     justify-content: space-evenly;
     width: 90%;
     margin: 0 auto;
     margin-top: 1em;
-    border: 2px solid black;
+    box-shadow: 2px 4px 6px rgb(0, 0, 0);
+    border-radius: 5px;
+    background-color: variables.$tab_color;
+    
 
     .trainings-info-content {
         
@@ -20,14 +24,18 @@
             align-items: center;
             justify-content: space-around;
             width: 70%;
+            font-family: 'Nunito Sans', sans-serif;
+            color: variables.$text_color_secondary;
         }
 
         button {
-            
+            font-family: 'Nunito Sans', sans-serif;
             border-radius: 10px;
             margin: 23px;
             border: transparent;
             padding: 5px;
+            text-transform: uppercase;
+            font-size: 12px;
         }
     }
 }

@@ -1,27 +1,41 @@
+@use '../../styles/variables';
+
+
 .intensity {
     display:flex;
     flex-direction: column;
     width:100%;
     margin-top: 2em;
 
+    .delete-exercise {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1em;
+    }
+
     span {
-        width: fit-content;
-        margin: 0 auto;
-       border: 2px solid rgb(0, 0, 0);
-       padding: 1em;
-       margin-bottom: 1em;
-       background: linear-gradient(to right, #ff0000, #ffffff);
+
+    width: fit-content;
+    border-radius: 5px; 
+    text-align: center;
+    
+    background-color: variables.$text_color_secondary;
+    padding:9px 5px;
+    height: 32px;
+    
     }
 
     .delete-button {
-        margin-top: 1em;
+        
         border-radius: 10px;
-        background-color: red;
+        background-color: variables.$color_delete;
         border: transparent;
         padding: 5px;
-        max-width: 20%;
-        margin: 0 auto;
-        margin-bottom: 1em;
+        width: 30%;
+        height: 32px;
+        
     }
     .add-exercise {
         width: 100%;

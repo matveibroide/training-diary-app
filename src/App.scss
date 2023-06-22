@@ -1,11 +1,26 @@
+@use './styles/variables';
+
+
+
+
+
 .App {
+  font-family: 'Nunito Sans', sans-serif;
   text-align: center;
   display: flex;
-  
   align-items: center;
   justify-content: center;
   height: 100%;
+  width: 100%;
+  background:variables.$background_color;
+  padding-bottom:50vh;
   
+  .dumbbell {
+    margin-top: 5em;
+    font-size: 24px;
+    margin-bottom: 5em;
+   
+  }
 
   .add-exercise  {
 
@@ -20,11 +35,16 @@
 
       input {
         width: 40%;
+        border-radius: 5px;
+        border: transparent;
+        box-shadow: 2px 4px 8px rgb(0, 0, 0);
       }
 
       button {
-        background-color: red;
+        color: variables.$text_color;
+        background-color: variables.$tab_color;
         width: 44%;
+        text-align: center;
 
       }
     }
@@ -34,16 +54,42 @@
 
 @media(max-width:400px) {
 
+  .App {
+    flex-direction: column;
+
+    .add-exercise {
+      width: 90%;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+    }
+  }
+
+  .App .add-exercise .add-exercise-form {
+    width: 40%;
+    margin: 1em auto;
+    margin-top: 1em;
+  }
+
+  
+
   .App .add-exercise form {
     margin: 0 auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
   }
   .App .add-exercise form button {
-    margin-top: 1em;
-    width: 100%;
+    margin:1em auto;
     border-radius: 10px;
     border: transparent;
-    padding: 1em;
+    padding: 5px;
+    width: 70px;
+    height: 40px;
+    background-color: variables.$color_add;
   }
 
   .App .add-exercise form input {
