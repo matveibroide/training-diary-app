@@ -15,6 +15,7 @@ export default function Training({training,dispatch,id}) {
                 <div className="training-headers">
                     <h4>Training name: {training.name}</h4>
                     <h4>Date: {training.date}</h4>
+                    <h4>Day: {training.day}</h4>
                 </div>
                 <button className="close-button" style={{backgroundColor:`${color}`}} onClick={() => setActive(!active)}>{active ? 'Close training' : 'Show training'}</button>
                 <button className="close-button" style={{backgroundColor:'red'}} onClick={() => dispatch({type:'delete-training',payload:{id:training.id}})}>Delete</button>

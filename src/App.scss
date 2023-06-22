@@ -13,13 +13,12 @@
   height: 100%;
   width: 100%;
   background:variables.$background_color;
-  padding-bottom:50vh;
+  padding-bottom:71vh;
   
   .dumbbell {
     margin-top: 5em;
     font-size: 24px;
-    margin-bottom: 5em;
-   
+
   }
 
   .add-exercise  {
@@ -83,11 +82,12 @@
 
   }
   .App .add-exercise form button {
+    font-weight: 750;
     margin:1em auto;
     border-radius: 10px;
     border: transparent;
     padding: 5px;
-    width: 70px;
+    width: 75px;
     height: 40px;
     background-color: variables.$color_add;
   }

@@ -2,7 +2,9 @@ import {useReducer, useState,useEffect} from 'react'
 import './App.scss';
 import DaySelector from './components/DaySelector/DaySelector'
 import Training from './components/Trainings/Trainings';
+import SearchBar from './components/SearchBar/SearchBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import { faBars, faCoffee, faDumbbell, faScroll, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 const dumbbell = <FontAwesomeIcon size = '3x' icon={faDumbbell} />
@@ -156,7 +158,7 @@ useEffect(()=>{
 
 function handleSubmit(e) {
 
-    if (name === '' && date === '') {
+    if (name === ''|| date === '') {
       e.preventDefault()
       setValid(false)
       return
@@ -172,7 +174,7 @@ function handleSubmit(e) {
       
     }
 
-
+   
     
   }
 
@@ -184,6 +186,7 @@ function handleSubmit(e) {
 
   return (
     <div className='App'>
+      
     <DaySelector dispatch={dispatch}/>
     {state.day ? null : 
     (<div className='dumbbell'>
@@ -192,18 +195,23 @@ function handleSubmit(e) {
       Please open menu select day and enter your training
     </p>
   </div>)}
+    {state.day ? (
+    <ErrorBoundary>
+      <SearchBar dispatch={dispatch} trainings={state.trainings} />
+    </ErrorBoundary>
+  ) : null}
     <div className="add-exercise">
-      
         {state.day ? 
         (<div className="add-exercise-form">
         <form onSubmit={handleSubmit} action="">
             <span style={{backgroundColor:`${inputColor}`,borderRadius:'5px',padding:'0.5em'}}>{valid ? null : 'Enter training name and date'}</span>
             <input  value={name} onChange={(e)=>setName(e.target.value)} placeholder="Training name" type="text" />
-            <input  value={date} onChange={(e)=>setDate(e.target.value)} placeholder="Date" type="text" />
+            <input  value={date} onChange={(e)=>setDate(e.target.value)} placeholder="Date" type="date" />
             <button>ADD TRAINING</button>
         </form>
       </div>)
       : null}
+      
         {
               state.trainings.map(training=>{
                 if (training.day === state.day) {
