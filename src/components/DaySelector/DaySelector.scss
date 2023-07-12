@@ -6,7 +6,7 @@
     color: variables.$text_color;
     
     display: flex;
-    flex-direction: column;
+    
     width: fit-content;
     margin: 1% 95% 0 6%;
     border-radius: 10px;
@@ -36,4 +36,47 @@
     border: 2px solid black;
         
     }
+}
+
+
+@media(max-width:420px) {
+
+
+    .days {
+        font-family: 'Nunito Sans', sans-serif;
+        color: variables.$text_color;
+        
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        margin: 1% 95% 0 6%;
+        border-radius: 10px;
+        padding: 10px;
+        background-color:variables.$navbar_color ;
+    
+        .barsMenu {
+            text-align: left;
+        }
+    
+        .day {
+        margin: 1em auto;
+        border: 2px solid black;
+        border-radius: 10px;
+        cursor: pointer;
+        border: transparent;
+        background:variables.$background_color ;
+        width: 50%;
+        }
+    
+        .day-active {
+            
+        width: 60%;
+        background-color:variables.$color_primary;
+        border-radius: 10px;
+        margin: 1em auto;
+        border: 2px solid black;
+            
+        }
+    }
+
 }

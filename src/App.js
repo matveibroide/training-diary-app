@@ -133,12 +133,29 @@ function newExercise(name,id) {
   }
 }
 
+const MobileOnly = () => {
+
+  return (
+    <div>
+      <h1>Sorry,this app only for mobile devices</h1>
+    </div>
+  )
+}
+
 export default function App() {
 
-  
+  const [mobile,setMobile] = useState(false)
   const [name, setName] = useState('');
   const [date, setDate] = useState('');
   const [valid,setValid] = useState(true)
+
+
+  useEffect(()=>{
+    console.log(mobile)
+    if (window.innerWidth <= 420) {
+      setMobile(true)
+    }
+  },[mobile])
   
   
   const savedTrainings = localStorage.getItem('trainings')
@@ -185,44 +202,46 @@ function handleSubmit(e) {
   
 
   return (
-    <div className='App'>
+    <div className="appContainer">
+    {mobile ?  <div className='App'>
+      <DaySelector dispatch={dispatch}/>
+      {state.day ? null :
+      (<div className='dumbbell'>
+      {dumbbell}
+      <p>
+        Please open menu select day and enter your training
+      </p>
+        </div>)}
+      {state.day ? (
+      <ErrorBoundary>
+        <SearchBar dispatch={dispatch} trainings={state.trainings} />
+      </ErrorBoundary>
+        ) : null}
+      <div className="add-exercise">
+          {state.day ?
+          (<div className="add-exercise-form">
+          <form onSubmit={handleSubmit} action="">
+              <span style={{backgroundColor:`${inputColor}`,borderRadius:'5px',padding:'0.5em'}}>{valid ? null : 'Enter training name and date'}</span>
+              <input  value={name} onChange={(e)=>setName(e.target.value)} placeholder="Training name" type="text" />
+              <input  value={date} onChange={(e)=>setDate(e.target.value)} placeholder="Date" type="date" />
+              <button>ADD TRAINING</button>
+          </form>
+        </div>)
+        : null}
       
-    <DaySelector dispatch={dispatch}/>
-    {state.day ? null : 
-    (<div className='dumbbell'>
-    {dumbbell}
-    <p>
-      Please open menu select day and enter your training
-    </p>
-  </div>)}
-    {state.day ? (
-    <ErrorBoundary>
-      <SearchBar dispatch={dispatch} trainings={state.trainings} />
-    </ErrorBoundary>
-  ) : null}
-    <div className="add-exercise">
-        {state.day ? 
-        (<div className="add-exercise-form">
-        <form onSubmit={handleSubmit} action="">
-            <span style={{backgroundColor:`${inputColor}`,borderRadius:'5px',padding:'0.5em'}}>{valid ? null : 'Enter training name and date'}</span>
-            <input  value={name} onChange={(e)=>setName(e.target.value)} placeholder="Training name" type="text" />
-            <input  value={date} onChange={(e)=>setDate(e.target.value)} placeholder="Date" type="date" />
-            <button>ADD TRAINING</button>
-        </form>
-      </div>)
-      : null}
+          {
+                state.trainings.map(training=>{
+                  if (training.day === state.day) {
+                    console.log('render')
+                    return <Training id = {training.id} dispatch = {dispatch} training = {training} key = {training.id}/>
+                  }
+                })
       
-        {
-              state.trainings.map(training=>{
-                if (training.day === state.day) {
-                  console.log('render')
-                  return <Training id = {training.id} dispatch = {dispatch} training = {training} key = {training.id}/>
-                }
-              })
-      
-            }
-    </div>
-      
+              }
       </div>
+      
+        </div> :
+        <MobileOnly/>}
+    </div>
   )
 }
