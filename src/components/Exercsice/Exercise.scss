@@ -15,15 +15,16 @@
         margin-bottom: 1em;
     }
 
-    span {
-
-    width: fit-content;
+    .exerciseName {
+    padding: 0 5px;
+    height: auto;
     border-radius: 5px; 
     text-align: left;
     background-color: variables.$text_color_secondary;
-    padding:9px 5px;
-    height: 36px;
-    box-sizing: border-box;
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
     
     }
 

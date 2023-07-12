@@ -35,7 +35,7 @@ export default function Exercise ({exercise,dispatch}) {
     return (
         <div className='intensity'>   
             <div className="delete-exercise">
-                <span>Exercise:{exercise.name}</span>
+                <div className='exerciseName'><p>{exercise.name}</p></div>
                 <button className='delete-button' onClick={()=>dispatch({type:ACTIONS.DELETE_EXERCISE,payload:{id:exercise.activeID}})}>delete</button>
                 
             </div>
